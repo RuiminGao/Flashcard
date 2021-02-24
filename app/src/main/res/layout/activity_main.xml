@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlCard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="250dp"
+        android:background="@drawable/card"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Who is the 44th President of the United States?"
+        android:textColor="#3949AB"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:elevation="10dp"/>
+
+    <TextView
+        android:id="@+id/tvAns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="250dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/card_back"
+        android:textColor="#FFB300"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Barack Obama"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:elevation="10dp"/>
+
+    <TextView
+        android:id="@+id/tvOption1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey"
+        android:textColor="@color/grey2"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Bill Clinton"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_marginHorizontal="16dp"/>
+
+    <TextView
+        android:id="@+id/tvOption2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tvOption1"
+        android:layout_marginTop="16dp"
+        android:background="@color/grey"
+        android:textColor="@color/grey2"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="George H. W. Bush"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_marginHorizontal="16dp"/>
+
+    <TextView
+        android:id="@+id/tvOption3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tvOption2"
+        android:layout_marginTop="16dp"
+        android:background="@color/grey"
+        android:textColor="@color/grey2"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Barack Obama"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_marginHorizontal="16dp"/>
+
+    <ImageView
+        android:id="@+id/ivVisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOption3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/ic_iconmonstr_eye_5" />
+
+    <ImageView
+        android:id="@+id/ivInvisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOption3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_iconmonstr_eye_8" />
+
+
+</RelativeLayout>
