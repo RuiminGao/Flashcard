@@ -9,17 +9,17 @@
 
     <TextView
         android:id="@+id/tvQuestion"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:height="250dp"
+        android:height="200dp"
         android:background="@drawable/card"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="Who is the 44th President of the United States?"
-        android:textColor="#3949AB"
-        android:textSize="40sp"
+        android:textColor="#4DD0E1"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="visible"
         android:elevation="10dp"/>
@@ -28,15 +28,15 @@
         android:id="@+id/tvAns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:height="250dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
+        android:height="200dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="50dp"
         android:background="@drawable/card_back"
         android:textColor="#FFB300"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="Barack Obama"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="invisible"
         android:elevation="10dp"/>
@@ -46,16 +46,17 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@+id/tvQuestion"
-        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
         android:background="@color/grey"
-        android:textColor="@color/grey2"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="Bill Clinton"
+        android:textColor="@color/grey2"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"
-        android:layout_marginHorizontal="16dp"/>
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvOption2"
@@ -95,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvOption3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:visibility="visible"
         app:srcCompat="@drawable/ic_iconmonstr_eye_5" />
 
@@ -105,9 +106,54 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvOption3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:visibility="invisible"
         app:srcCompat="@drawable/ic_iconmonstr_eye_8" />
+
+    <ImageView
+        android:id="@+id/ivLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvQuestion"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        app:srcCompat="@drawable/left_arrow" />
+
+    <ImageView
+        android:id="@+id/ivRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvQuestion"
+        android:layout_alignBottom="@+id/tvQuestion"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="0dp"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivVisible"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/ivVisible"
+        app:srcCompat="@drawable/edit_icon" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivVisible"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/ivVisible"
+        app:srcCompat="@drawable/add_icon" />
 
 
 </RelativeLayout>
