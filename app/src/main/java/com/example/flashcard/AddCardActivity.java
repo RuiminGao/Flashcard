@@ -8,12 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.flashcard.MainActivity.KEY_ANSWER;
 import static com.example.flashcard.MainActivity.KEY_CARD_OPTIONS;
 
 public class AddCardActivity extends AppCompatActivity {
 
     ImageView ivCancel, ivSave;
-    EditText etQuestion,etAnswer;
+    EditText etQuestion,etAnswer,etKey;
     EditText[] etOptions;
 
     @Override
@@ -26,12 +27,14 @@ public class AddCardActivity extends AppCompatActivity {
         etQuestion = findViewById(R.id.etQuestion);
         etAnswer = findViewById(R.id.etAnswer);
         etOptions = new EditText[]{findViewById(R.id.etOption1), findViewById(R.id.etOption2), findViewById(R.id.etOption3)};
+        etKey = findViewById(R.id.etKey);
 
         etQuestion.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_QUESTION));
         etAnswer.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_ANSWER));
         for(int j = 0; j < 3; j++) {
             etOptions[j].setText(getIntent().getStringExtra(MainActivity.KEY_CARD_OPTIONS[j]));
         }
+        etKey.setText(String.valueOf(getIntent().getExtras().getInt(MainActivity.KEY_ANSWER)+1));
 
         ivCancel.setOnClickListener(view -> {
             Intent intent = new Intent();
@@ -49,6 +52,7 @@ public class AddCardActivity extends AppCompatActivity {
                 for(int j = 0; j < etOptions.length; j++) {
                     intent.putExtra(MainActivity.KEY_CARD_OPTIONS[j], etOptions[j].getText().toString());
                 }
+                intent.putExtra(MainActivity.KEY_ANSWER, Integer.valueOf(etKey.getText().toString()));
                 setResult(RESULT_OK, intent);
                 finish();
             }

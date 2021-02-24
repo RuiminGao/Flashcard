@@ -19,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_CARD_QUESTION = "card_question";
     public static final String KEY_CARD_ANSWER = "card_answer";
     public static final String[] KEY_CARD_OPTIONS = {"option_1","option_2","option_3"};
+    public static final String KEY_ANSWER = "answer_key";
 
     ImageView ivVisible, ivInvisible, ivEdit, ivAdd;
     TextView tvQuestion, tvAns;
     TextView[] tvOptions;
     RelativeLayout rlCard;
+    int answerKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         tvQuestion = findViewById(R.id.tvQuestion);
         tvAns = findViewById(R.id.tvAns);
         tvOptions = new TextView[]{findViewById(R.id.tvOption1), findViewById(R.id.tvOption2), findViewById(R.id.tvOption3)};
-        int answerKey = 2;
+        answerKey = 2;
         rlCard = findViewById(R.id.rlCard);
         ivEdit = findViewById(R.id.ivEdit);
         ivAdd = findViewById(R.id.ivAdd);
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             for(int j = 0; j < tvOptions.length; j++) {
                 i.putExtra(KEY_CARD_OPTIONS[j], tvOptions[j].getText().toString());
             }
+            i.putExtra(KEY_ANSWER, answerKey);
             startActivityForResult(i, ADD_CARD_CODE);
         });
 
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Saved.", Toast.LENGTH_SHORT).show();
             tvQuestion.setText(data.getStringExtra(KEY_CARD_QUESTION));
             tvAns.setText(data.getStringExtra(KEY_CARD_ANSWER));
+            answerKey = data.getExtras().getInt(KEY_ANSWER)-1;
             for(int j = 0; j < 3; j++) {
                 String text = data.getStringExtra(KEY_CARD_OPTIONS[j]);
                 if (text.isEmpty()) {
