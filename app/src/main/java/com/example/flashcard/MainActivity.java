@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_CARD_ANSWER = "card_answer";
     public static final String[] KEY_CARD_OPTIONS = {"option_1","option_2","option_3"};
     public static final String KEY_ANSWER = "answer_key";
+    public static final String KEY_MODE = "edit_mode";
 
     ImageView ivVisible, ivInvisible, ivEdit, ivAdd;
     TextView tvQuestion, tvAns;
@@ -50,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra(KEY_CARD_OPTIONS[j], tvOptions[j].getText().toString());
             }
             i.putExtra(KEY_ANSWER, answerKey);
+            i.putExtra(KEY_MODE, "edit");
             startActivityForResult(i, ADD_CARD_CODE);
         });
 
         ivAdd.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this, AddCardActivity.class);
+            i.putExtra(KEY_MODE, "add");
             startActivityForResult(i, ADD_CARD_CODE);
         });
 

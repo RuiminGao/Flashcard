@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.flashcard.MainActivity.KEY_ANSWER;
 import static com.example.flashcard.MainActivity.KEY_CARD_OPTIONS;
+import static com.example.flashcard.MainActivity.KEY_MODE;
 
 public class AddCardActivity extends AppCompatActivity {
 
@@ -29,13 +30,14 @@ public class AddCardActivity extends AppCompatActivity {
         etOptions = new EditText[]{findViewById(R.id.etOption1), findViewById(R.id.etOption2), findViewById(R.id.etOption3)};
         etKey = findViewById(R.id.etKey);
 
-        etQuestion.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_QUESTION));
-        etAnswer.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_ANSWER));
-        for(int j = 0; j < 3; j++) {
-            etOptions[j].setText(getIntent().getStringExtra(MainActivity.KEY_CARD_OPTIONS[j]));
+        if(getIntent().getStringExtra(KEY_MODE) == "edit") {
+            etQuestion.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_QUESTION));
+            etAnswer.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_ANSWER));
+            for (int j = 0; j < 3; j++) {
+                etOptions[j].setText(getIntent().getStringExtra(MainActivity.KEY_CARD_OPTIONS[j]));
+            }
+            etKey.setText(String.valueOf(getIntent().getExtras().getInt(MainActivity.KEY_ANSWER) + 1));
         }
-        etKey.setText(String.valueOf(getIntent().getExtras().getInt(MainActivity.KEY_ANSWER)+1));
-
         ivCancel.setOnClickListener(view -> {
             Intent intent = new Intent();
             setResult(RESULT_CANCELED, intent);
