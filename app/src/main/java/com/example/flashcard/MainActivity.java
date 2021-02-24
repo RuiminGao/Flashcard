@@ -2,6 +2,7 @@ package com.example.flashcard;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String KEY_CARD_QUESTION = "card_question";
     public static final String KEY_CARD_ANSWER = "card_answer";
+    public static final String[] KEY_CARD_OPTIONS = {"option_1","option_2","option_3"};
 
     ImageView ivVisible, ivInvisible, ivEdit, ivAdd;
     TextView tvQuestion, tvAns;
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, AddCardActivity.class);
             i.putExtra(KEY_CARD_QUESTION, tvQuestion.getText().toString());
             i.putExtra(KEY_CARD_ANSWER, tvAns.getText().toString());
+            for(int j = 0; j < tvOptions.length; j++) {
+                i.putExtra(KEY_CARD_OPTIONS[j], tvOptions[j].getText().toString());
+            }
             startActivityForResult(i, ADD_CARD_CODE);
         });
 
@@ -51,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         rlCard.setOnClickListener(view -> {
             for (TextView tvOption : tvOptions) {
-                tvOption.setBackgroundColor(getResources().getColor(R.color.grey));
-                tvOption.setTextColor(getResources().getColor(R.color.grey2));
+                tvOption.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.grey));
+                tvOption.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.grey2));
             }
         });
 
@@ -73,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
         for (TextView tvOption : tvOptions) {
             tvOption.setOnClickListener(view -> {
                 if (view == tvOptions[answerKey]) {
-                    view.setBackgroundColor(getResources().getColor(R.color.green));
-                    ((TextView) view).setTextColor(getResources().getColor(R.color.green2));
+                    view.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+                    ((TextView) view).setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green2));
                 } else {
-                    tvOptions[answerKey].setBackgroundColor(getResources().getColor(R.color.green));
-                    tvOptions[answerKey].setTextColor(getResources().getColor(R.color.green2));
-                    view.setBackgroundColor(getResources().getColor(R.color.red));
-                    ((TextView) view).setTextColor(getResources().getColor(R.color.red2));
+                    tvOptions[answerKey].setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+                    tvOptions[answerKey].setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green2));
+                    view.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                    ((TextView) view).setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red2));
                 }
 
             });
@@ -91,8 +97,17 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK) {
             assert data != null;
+            Toast.makeText(getApplicationContext(), "Saved.", Toast.LENGTH_SHORT).show();
             tvQuestion.setText(data.getStringExtra(KEY_CARD_QUESTION));
             tvAns.setText(data.getStringExtra(KEY_CARD_ANSWER));
+            for(int j = 0; j < 3; j++) {
+                String text = data.getStringExtra(KEY_CARD_OPTIONS[j]);
+                if (text.isEmpty()) {
+                    tvOptions[j].setText("NULL");
+                } else {
+                    tvOptions[j].setText(text);
+                }
+            }
         }
     }
 
