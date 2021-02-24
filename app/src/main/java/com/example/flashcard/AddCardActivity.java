@@ -30,7 +30,7 @@ public class AddCardActivity extends AppCompatActivity {
         etOptions = new EditText[]{findViewById(R.id.etOption1), findViewById(R.id.etOption2), findViewById(R.id.etOption3)};
         etKey = findViewById(R.id.etKey);
 
-        if(getIntent().getStringExtra(KEY_MODE) == "edit") {
+        if(getIntent().getStringExtra(KEY_MODE).equals("edit")) {
             etQuestion.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_QUESTION));
             etAnswer.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_ANSWER));
             for (int j = 0; j < 3; j++) {
