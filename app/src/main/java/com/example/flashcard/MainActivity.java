@@ -2,6 +2,7 @@ package com.example.flashcard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,10 +11,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView ivVisible;
-    ImageView ivInvisible;
-    TextView tvQuestion;
-    TextView tvAns;
+    public static final int ADD_CARD_CODE = 20;
+
+    public static final String KEY_CARD_QUESTION = "card_question";
+    public static final String KEY_CARD_ANSWER = "card_answer";
+
+    ImageView ivVisible, ivInvisible, ivEdit, ivAdd;
+    TextView tvQuestion, tvAns;
     TextView[] tvOptions;
     RelativeLayout rlCard;
 
@@ -29,6 +33,26 @@ public class MainActivity extends AppCompatActivity {
         tvOptions = new TextView[]{findViewById(R.id.tvOption1), findViewById(R.id.tvOption2), findViewById(R.id.tvOption3)};
         int answerKey = 2;
         rlCard = findViewById(R.id.rlCard);
+        ivEdit = findViewById(R.id.ivEdit);
+        ivAdd = findViewById(R.id.ivAdd);
+
+        ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, AddCardActivity.class);
+                i.putExtra(KEY_CARD_QUESTION, tvQuestion.getText().toString());
+                i.putExtra(KEY_CARD_ANSWER, tvAns.getText().toString());
+                startActivityForResult(i, ADD_CARD_CODE);
+            }
+        });
+
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, AddCardActivity.class);
+                startActivityForResult(i, ADD_CARD_CODE);
+            }
+        });
 
         rlCard.setOnClickListener(new View.OnClickListener() {
             @Override

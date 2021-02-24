@@ -94,9 +94,9 @@
         android:id="@+id/ivVisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOption3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
         android:visibility="visible"
         app:srcCompat="@drawable/ic_iconmonstr_eye_5" />
 
@@ -104,9 +104,9 @@
         android:id="@+id/ivInvisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOption3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
         android:visibility="invisible"
         app:srcCompat="@drawable/ic_iconmonstr_eye_8" />
 
@@ -136,23 +136,23 @@
         app:srcCompat="@drawable/right_arrow" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ivVisible"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="0dp"
-        android:layout_toStartOf="@+id/ivVisible"
-        app:srcCompat="@drawable/edit_icon" />
-
-    <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/ivVisible"
         android:layout_marginStart="50dp"
         android:layout_marginBottom="0dp"
-        android:layout_toEndOf="@+id/ivVisible"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/edit_icon" />
+
+    <ImageView
+        android:id="@+id/ivAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivVisible"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentEnd="true"
         app:srcCompat="@drawable/add_icon" />
 
 
