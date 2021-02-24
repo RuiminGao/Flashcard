@@ -1,5 +1,6 @@
 package com.example.flashcard;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,80 +37,62 @@ public class MainActivity extends AppCompatActivity {
         ivEdit = findViewById(R.id.ivEdit);
         ivAdd = findViewById(R.id.ivAdd);
 
-        ivEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AddCardActivity.class);
-                i.putExtra(KEY_CARD_QUESTION, tvQuestion.getText().toString());
-                i.putExtra(KEY_CARD_ANSWER, tvAns.getText().toString());
-                startActivityForResult(i, ADD_CARD_CODE);
+        ivEdit.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, AddCardActivity.class);
+            i.putExtra(KEY_CARD_QUESTION, tvQuestion.getText().toString());
+            i.putExtra(KEY_CARD_ANSWER, tvAns.getText().toString());
+            startActivityForResult(i, ADD_CARD_CODE);
+        });
+
+        ivAdd.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, AddCardActivity.class);
+            startActivityForResult(i, ADD_CARD_CODE);
+        });
+
+        rlCard.setOnClickListener(view -> {
+            for (TextView tvOption : tvOptions) {
+                tvOption.setBackgroundColor(getResources().getColor(R.color.grey));
+                tvOption.setTextColor(getResources().getColor(R.color.grey2));
             }
         });
 
-        ivAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AddCardActivity.class);
-                startActivityForResult(i, ADD_CARD_CODE);
-            }
+        tvQuestion.setOnClickListener(view -> setToggle(view,tvAns));
+
+        tvAns.setOnClickListener(view -> setToggle(view,tvQuestion));
+
+        ivVisible.setOnClickListener(view -> {
+            setToggle(ivVisible,ivInvisible);
+            setOptions(View.VISIBLE);
         });
 
-        rlCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (int i = 0; i < tvOptions.length; i++) {
-                    tvOptions[i].setBackgroundColor(getResources().getColor(R.color.grey));
-                    tvOptions[i].setTextColor(getResources().getColor(R.color.grey2));
+        ivInvisible.setOnClickListener(view -> {
+            setToggle(ivInvisible,ivVisible);
+            setOptions(View.INVISIBLE);
+        });
+
+        for (TextView tvOption : tvOptions) {
+            tvOption.setOnClickListener(view -> {
+                if (view == tvOptions[answerKey]) {
+                    view.setBackgroundColor(getResources().getColor(R.color.green));
+                    ((TextView) view).setTextColor(getResources().getColor(R.color.green2));
+                } else {
+                    tvOptions[answerKey].setBackgroundColor(getResources().getColor(R.color.green));
+                    tvOptions[answerKey].setTextColor(getResources().getColor(R.color.green2));
+                    view.setBackgroundColor(getResources().getColor(R.color.red));
+                    ((TextView) view).setTextColor(getResources().getColor(R.color.red2));
                 }
-            }
-        });
 
-        tvQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setToggle(view,tvAns);
-            }
-        });
-
-        tvAns.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setToggle(view,tvQuestion);
-            }
-        });
-
-        ivVisible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setToggle(ivVisible,ivInvisible);
-                setOptions(View.VISIBLE);
-            }
-        });
-
-        ivInvisible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setToggle(ivInvisible,ivVisible);
-                setOptions(View.INVISIBLE);
-            }
-        });
-
-        for(int i = 0; i < tvOptions.length; i++) {
-            tvOptions[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(((TextView)view) == tvOptions[answerKey]) {
-                        view.setBackgroundColor(getResources().getColor(R.color.green));
-                        ((TextView) view).setTextColor(getResources().getColor(R.color.green2));
-                    } else {
-                        tvOptions[answerKey].setBackgroundColor(getResources().getColor(R.color.green));
-                        tvOptions[answerKey].setTextColor(getResources().getColor(R.color.green2));
-                        view.setBackgroundColor(getResources().getColor(R.color.red));
-                        ((TextView) view).setTextColor(getResources().getColor(R.color.red2));
-                    }
-
-                }
             });
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK) {
+            assert data != null;
+            tvQuestion.setText(data.getStringExtra(KEY_CARD_QUESTION));
+            tvAns.setText(data.getStringExtra(KEY_CARD_ANSWER));
         }
     }
 
@@ -118,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         v2.setVisibility(View.VISIBLE);
     }
     private void setOptions(int status) {
-        for (int i = 0; i < tvOptions.length; i++) {
-            tvOptions[i].setVisibility(status);
+        for (TextView tvOption : tvOptions) {
+            tvOption.setVisibility(status);
         }
     }
 }

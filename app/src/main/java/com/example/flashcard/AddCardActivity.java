@@ -1,12 +1,11 @@
 package com.example.flashcard;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AddCardActivity extends AppCompatActivity {
 
@@ -26,24 +25,18 @@ public class AddCardActivity extends AppCompatActivity {
         etQuestion.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_QUESTION));
         etAnswer.setText(getIntent().getStringExtra(MainActivity.KEY_CARD_ANSWER));
 
-        ivCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+        ivCancel.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
         });
 
-        ivSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra(MainActivity.KEY_CARD_QUESTION, etQuestion.getText().toString());
-                intent.putExtra(MainActivity.KEY_CARD_ANSWER, etAnswer.getText().toString());
-                setResult(RESULT_OK, intent);
-                finish();
-            }
+        ivSave.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.putExtra(MainActivity.KEY_CARD_QUESTION, etQuestion.getText().toString());
+            intent.putExtra(MainActivity.KEY_CARD_ANSWER, etAnswer.getText().toString());
+            setResult(RESULT_OK, intent);
+            finish();
         });
 
     }
