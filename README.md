@@ -5,7 +5,7 @@
 ## Lab 2
 
 ### App Description
-Flashcard app: cutomize it with your own list.
+Flashcard app: customize it with your own list!
 
 ### App Walk-though
 <img src="walkthrough_2.gif" width=200><br>
